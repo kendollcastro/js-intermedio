@@ -1,0 +1,9 @@
+h1 {
+    color: tomato;
+    font-family: sans-serif;
+}
+
+#main__canvas {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
