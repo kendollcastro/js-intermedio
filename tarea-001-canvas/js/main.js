@@ -23,6 +23,16 @@ function draw() {
   ctx.arc(xPositionCircle, yPositionCircle, 50, 0, 2 * Math.PI);
   ctx.fill();
 
+  window.requestAnimationFrame(draw);
+  window.requestAnimationFrame(squareBouncing);
+  window.requestAnimationFrame(circleBouncing);
+}
+
+function squareBouncing() {
+
+  //Square position
+  xPosition += velocityX;
+  yPosition += velocityY;
 
   //Square bouncing
 
@@ -33,9 +43,16 @@ function draw() {
   if(yPosition + velocityY > canvas.height-100 || yPosition < 0 ){
     velocityY = -velocityY
   }
+}
+
+function circleBouncing() {
 
   //Circle bouncing
   //References: https://developer.mozilla.org/es/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Bounce_off_the_walls
+
+  //Circle position
+  xPositionCircle += velocityXCircle;
+  yPositionCircle += velocityYCircle;
 
   if(xPositionCircle + velocityXCircle > canvas.width-50 || xPositionCircle + velocityXCircle < 50) {
     velocityXCircle = -velocityXCircle;
@@ -44,20 +61,12 @@ function draw() {
   if(yPositionCircle + velocityYCircle > canvas.height-50 || yPositionCircle + velocityYCircle < 50) {
     velocityYCircle = -velocityYCircle;
   }
-
-
-  //Square position
-  xPosition += velocityX;
-  yPosition += velocityY;
-
-  //Circle position
-  xPositionCircle += velocityXCircle;
-  yPositionCircle += velocityYCircle;
-  window.requestAnimationFrame(draw);
-}
+} 
 
 function getRamdomArbitrary(min, max){
   return Math.random() * (max - min) + min;
 }
 
+window.requestAnimationFrame(squareBouncing);
+window.requestAnimationFrame(circleBouncing);
 window.requestAnimationFrame(draw);
